@@ -1,9 +1,8 @@
 # PresentAnimation
 ***
 ## 仿映客刷礼物效果
-基本使用
 
-1. 创建PresentView对象，并添加到父类中
+#### 1. 创建PresentView对象
 
 ```
 PresentView *presentView = [[PresentView alloc] init];
@@ -11,7 +10,8 @@ presentView.delegate = self;
 presentView.frame = CGRectMake(0, 200, 200, 130);
 [self.view addSubview:presentView];
 ```
-2.实现代理协议
+
+#### 2. 实现代理协议
 
 * 返回自定义cell样式(required)
 
@@ -44,7 +44,7 @@ presentView.frame = CGRectMake(0, 200, 200, 130);
 }
 ```
 
-3. 收到消息，将消息插入
+#### 3. 收到消息，将消息插入
 
 ```
 [self.presentView insertPresentMessages:@[self.dataArray[0]]];
