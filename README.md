@@ -49,3 +49,6 @@ presentView.frame = CGRectMake(0, 200, 200, 130);
 ```
 [self.presentView insertPresentMessages:@[self.dataArray[0]]];
 ```
+效果图如下：
+![效果图.png](http://upload-images.jianshu.io/upload_images/1344789-f91968285ccc875d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+关于Demo的基本逻辑分析，详见：[仿映客刷礼物效果---基本逻辑实现](http://www.jianshu.com/p/59c9532b22d9)
