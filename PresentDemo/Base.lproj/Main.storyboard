@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="ViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
+                        <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="mkI-zE-aZR">
+                                <rect key="frame" x="20" y="70" width="280" height="30"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="p3h-GV-PsT">
+                                        <rect key="frame" x="0.0" y="0.0" width="37" height="30"/>
+                                        <state key="normal" title="礼物1"/>
+                                        <connections>
+                                            <action selector="sendOne:" destination="BYZ-38-t0r" eventType="touchUpInside" id="jkL-D3-Fpf"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TK8-1t-ZuZ">
+                                        <rect key="frame" x="78" y="0.0" width="39" height="30"/>
+                                        <state key="normal" title="礼物2"/>
+                                        <connections>
+                                            <action selector="sendTwo:" destination="BYZ-38-t0r" eventType="touchUpInside" id="yWu-fO-kNJ"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hKc-Jt-miW">
+                                        <rect key="frame" x="159" y="0.0" width="40" height="30"/>
+                                        <state key="normal" title="礼物3"/>
+                                        <connections>
+                                            <action selector="sendThree:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ryd-aW-gHs"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ucw-7N-YkW">
+                                        <rect key="frame" x="240" y="0.0" width="40" height="30"/>
+                                        <state key="normal" title="礼物4"/>
+                                        <connections>
+                                            <action selector="sendFour:" destination="BYZ-38-t0r" eventType="touchUpInside" id="fJJ-UZ-sNE"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="nM2-WD-nh7"/>
+                                </constraints>
+                            </stackView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3kO-aZ-enL" customClass="PresentView">
+                                <rect key="frame" x="0.0" y="170" width="200" height="130"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="130" id="Ely-9R-03t"/>
+                                    <constraint firstAttribute="width" constant="200" id="X7u-H8-Jfv"/>
+                                </constraints>
+                            </view>
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8tk-3a-oQJ">
+                                <rect key="frame" x="14" y="60" width="50" height="50"/>
+                                <color key="backgroundColor" red="0.99607843137254903" green="0.78823529411764703" blue="0.090196078431372548" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="Kpf-Ol-0mh"/>
+                                    <constraint firstAttribute="width" constant="50" id="b7y-Pc-PqN"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="0">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="serialBtnClicked:" destination="BYZ-38-t0r" eventType="touchUpInside" id="tcU-bz-5Es"/>
+                                </connections>
+                            </button>
+                            <button hidden="YES" opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bTd-hi-yzW">
+                                <rect key="frame" x="93" y="60" width="50" height="50"/>
+                                <color key="backgroundColor" red="0.99607843139999996" green="0.78823529410000004" blue="0.090196078430000007" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="0">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="serialBtnClicked:" destination="BYZ-38-t0r" eventType="touchUpInside" id="RNk-oc-6db"/>
+                                </connections>
+                            </button>
+                            <button hidden="YES" opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xxx-sM-vze">
+                                <rect key="frame" x="174" y="60" width="50" height="50"/>
+                                <color key="backgroundColor" red="0.99607843139999996" green="0.78823529410000004" blue="0.090196078430000007" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="0">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="serialBtnClicked:" destination="BYZ-38-t0r" eventType="touchUpInside" id="iQL-Qb-la8"/>
+                                </connections>
+                            </button>
+                            <button hidden="YES" opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kHP-lg-ScB">
+                                <rect key="frame" x="255" y="60" width="50" height="50"/>
+                                <color key="backgroundColor" red="0.99607843139999996" green="0.78823529410000004" blue="0.090196078430000007" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="0">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="serialBtnClicked:" destination="BYZ-38-t0r" eventType="touchUpInside" id="zln-2e-LBO"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="bTd-hi-yzW" firstAttribute="centerY" secondItem="8tk-3a-oQJ" secondAttribute="centerY" id="1Ce-wG-oqH"/>
+                            <constraint firstItem="p3h-GV-PsT" firstAttribute="centerX" secondItem="8tk-3a-oQJ" secondAttribute="centerX" id="1xE-Ou-sgp"/>
+                            <constraint firstItem="Xxx-sM-vze" firstAttribute="height" secondItem="8tk-3a-oQJ" secondAttribute="height" id="4Qe-bF-RM9"/>
+                            <constraint firstItem="ucw-7N-YkW" firstAttribute="centerX" secondItem="kHP-lg-ScB" secondAttribute="centerX" id="8dt-54-Kap"/>
+                            <constraint firstItem="p3h-GV-PsT" firstAttribute="centerY" secondItem="8tk-3a-oQJ" secondAttribute="centerY" id="EyR-HS-J3x"/>
+                            <constraint firstItem="Xxx-sM-vze" firstAttribute="centerY" secondItem="8tk-3a-oQJ" secondAttribute="centerY" id="KHh-6V-6LE"/>
+                            <constraint firstItem="kHP-lg-ScB" firstAttribute="centerY" secondItem="8tk-3a-oQJ" secondAttribute="centerY" id="R31-Kb-f7f"/>
+                            <constraint firstItem="Xxx-sM-vze" firstAttribute="width" secondItem="8tk-3a-oQJ" secondAttribute="width" id="TLw-pu-Fkx"/>
+                            <constraint firstItem="mkI-zE-aZR" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="20" id="WjW-eg-gXK"/>
+                            <constraint firstItem="bTd-hi-yzW" firstAttribute="width" secondItem="8tk-3a-oQJ" secondAttribute="width" id="Ya0-Oy-c84"/>
+                            <constraint firstItem="3kO-aZ-enL" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="g35-zZ-eBb"/>
+                            <constraint firstItem="TK8-1t-ZuZ" firstAttribute="centerX" secondItem="bTd-hi-yzW" secondAttribute="centerX" id="gTr-Rh-np7"/>
+                            <constraint firstItem="bTd-hi-yzW" firstAttribute="height" secondItem="8tk-3a-oQJ" secondAttribute="height" id="iyT-IO-90V"/>
+                            <constraint firstItem="mkI-zE-aZR" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="50" id="k1X-he-6HF"/>
+                            <constraint firstItem="kHP-lg-ScB" firstAttribute="height" secondItem="8tk-3a-oQJ" secondAttribute="height" id="p8J-yJ-y0g"/>
+                            <constraint firstItem="kHP-lg-ScB" firstAttribute="width" secondItem="8tk-3a-oQJ" secondAttribute="width" id="rUy-UH-gsS"/>
+                            <constraint firstItem="hKc-Jt-miW" firstAttribute="centerX" secondItem="Xxx-sM-vze" secondAttribute="centerX" id="s5y-Jj-NbL"/>
+                            <constraint firstAttribute="trailing" secondItem="mkI-zE-aZR" secondAttribute="trailing" constant="20" id="xdE-nL-eov"/>
+                            <constraint firstItem="3kO-aZ-enL" firstAttribute="top" secondItem="mkI-zE-aZR" secondAttribute="bottom" constant="70" id="zc1-6Z-qQ6"/>
+                        </constraints>
+                    </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
+                    <connections>
+                        <outlet property="presentView" destination="3kO-aZ-enL" id="h3M-RD-Xeh"/>
+                        <outlet property="serialBtnFour" destination="kHP-lg-ScB" id="8ZX-rU-Tq3"/>
+                        <outlet property="serialBtnOne" destination="8tk-3a-oQJ" id="EG6-RY-8HH"/>
+                        <outlet property="serialBtnThree" destination="Xxx-sM-vze" id="h61-fH-ga6"/>
+                        <outlet property="serialBtnTwo" destination="bTd-hi-yzW" id="ppk-UZ-12L"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="345" y="331"/>
+        </scene>
+    </scenes>
+</document>

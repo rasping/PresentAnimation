@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="1B1-IG-BxC" customClass="CustonCell">
+            <rect key="frame" x="0.0" y="0.0" width="310" height="40"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Xwz-lU-TCC">
+                    <rect key="frame" x="0.0" y="0.0" width="310" height="40"/>
+                    <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.29906360815602839" colorSpace="calibratedRGB"/>
+                </view>
+                <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="8oB-Xh-ksz">
+                    <rect key="frame" x="0.0" y="0.0" width="40" height="40"/>
+                    <constraints>
+                        <constraint firstAttribute="width" secondItem="8oB-Xh-ksz" secondAttribute="height" multiplier="1:1" id="Vuk-kD-aEG"/>
+                    </constraints>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="sender" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pu4-LU-rNS">
+                    <rect key="frame" x="45" y="0.0" width="42" height="16"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="prop_b" translatesAutoresizingMaskIntoConstraints="NO" id="juV-WY-T8x">
+                    <rect key="frame" x="201" y="-5" width="109" height="50"/>
+                    <constraints>
+                        <constraint firstAttribute="height" relation="lessThanOrEqual" constant="50" id="WDg-4W-WCh"/>
+                    </constraints>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="送了一个【giftName】" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XYz-hh-ign">
+                    <rect key="frame" x="45" y="21" width="138" height="16"/>
+                    <fontDescription key="fontDescription" type="boldSystem" pointSize="13"/>
+                    <color key="textColor" red="1" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <constraints>
+                <constraint firstItem="juV-WY-T8x" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="XYz-hh-ign" secondAttribute="trailing" id="1uN-6V-qzV"/>
+                <constraint firstAttribute="trailing" secondItem="juV-WY-T8x" secondAttribute="trailing" id="9fs-Hx-Wec"/>
+                <constraint firstItem="Pu4-LU-rNS" firstAttribute="leading" secondItem="8oB-Xh-ksz" secondAttribute="trailing" constant="5" id="Dx9-kG-BhJ"/>
+                <constraint firstItem="juV-WY-T8x" firstAttribute="centerY" secondItem="1B1-IG-BxC" secondAttribute="centerY" id="Gpy-PY-19X"/>
+                <constraint firstAttribute="bottom" secondItem="Xwz-lU-TCC" secondAttribute="bottom" id="LNN-2k-ZS9"/>
+                <constraint firstAttribute="bottom" secondItem="8oB-Xh-ksz" secondAttribute="bottom" id="ML5-51-i8f"/>
+                <constraint firstItem="8oB-Xh-ksz" firstAttribute="leading" secondItem="1B1-IG-BxC" secondAttribute="leading" id="Tn3-k1-r1p"/>
+                <constraint firstItem="Xwz-lU-TCC" firstAttribute="leading" secondItem="1B1-IG-BxC" secondAttribute="leading" id="U71-iN-pxY"/>
+                <constraint firstItem="8oB-Xh-ksz" firstAttribute="top" secondItem="1B1-IG-BxC" secondAttribute="top" id="aQf-4a-tmC"/>
+                <constraint firstItem="XYz-hh-ign" firstAttribute="leading" secondItem="Pu4-LU-rNS" secondAttribute="leading" id="bRt-W1-mFx"/>
+                <constraint firstAttribute="trailing" secondItem="Xwz-lU-TCC" secondAttribute="trailing" id="hxR-OH-8Q9"/>
+                <constraint firstAttribute="bottom" secondItem="XYz-hh-ign" secondAttribute="bottom" constant="3" id="kHe-TW-di4"/>
+                <constraint firstItem="Xwz-lU-TCC" firstAttribute="top" secondItem="1B1-IG-BxC" secondAttribute="top" id="kZj-Mf-Dg4"/>
+                <constraint firstItem="Pu4-LU-rNS" firstAttribute="top" secondItem="1B1-IG-BxC" secondAttribute="top" id="z22-zn-6vu"/>
+            </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="bgView" destination="Xwz-lU-TCC" id="FyA-6c-156"/>
+                <outlet property="gift" destination="juV-WY-T8x" id="mPP-4l-ikE"/>
+                <outlet property="giftName" destination="XYz-hh-ign" id="3TG-rA-ph8"/>
+                <outlet property="giftNameLable" destination="XYz-hh-ign" id="wJq-c1-kMC"/>
+                <outlet property="icon" destination="8oB-Xh-ksz" id="mcQ-1R-mpc"/>
+                <outlet property="senderName" destination="Pu4-LU-rNS" id="4xx-rd-sdX"/>
+            </connections>
+            <point key="canvasLocation" x="193" y="145"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="prop_b" width="109" height="50"/>
+    </resources>
+</document>
