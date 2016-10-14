@@ -43,7 +43,6 @@
  *  返回自定义cell样式
  */
 - (PresentViewCell *)presentView:(PresentView *)presentView cellOfRow:(NSInteger)row;
-@optional
 /**
  *  礼物动画即将展示的时调用，根据礼物消息类型为自定义的cell设置对应的模型数据用于展示
  *
@@ -55,6 +54,8 @@
                configCell:(PresentViewCell *)cell
              sender:(NSString *)sender
            giftName:(NSString *)name;
+
+@optional
 
 /**
  *  cell点击事件

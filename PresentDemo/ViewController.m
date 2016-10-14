@@ -67,6 +67,7 @@
     [self setupSerialBtn:self.serialBtnTwo];
     [self setupSerialBtn:self.serialBtnThree];
     [self setupSerialBtn:self.serialBtnFour];
+    
 }
 
 #pragma mark - Private
