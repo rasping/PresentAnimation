@@ -44,10 +44,17 @@ presentView.frame = CGRectMake(0, 200, 200, 130);
 }
 ```
 
-#### 3. 收到消息，将消息插入
+#### 3. 属性定制
 
 ```
-[self.presentView insertPresentMessages:@[self.dataArray[0]]];
+presentView.showTime = 3.5;
+presentView.cellHeight = 35;
+```
+
+#### 4. 收到消息，将消息插入
+
+```
+[self.presentView insertPresentMessages:@[self.dataArray[2]] showShakeAnimation:YES];
 ```
 效果图如下：
 ![效果图.png](http://upload-images.jianshu.io/upload_images/1344789-f91968285ccc875d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
