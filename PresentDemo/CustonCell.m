@@ -63,4 +63,17 @@
     self.gift.image         = [UIImage imageNamed:model.giftImageName];
 }
 
+//自定义cell的展示动画
+- (void)customDisplayAnimationOfShowShakeAnimation:(BOOL)flag
+{
+    //这里是直接使用父类中的动画，如果用户想自定义可这里实现动画，不调用父类的方法(这个方法在UIView动画的animations回调中执行)
+    [super customDisplayAnimationOfShowShakeAnimation:flag];
+}
+
+//自定义cell的隐藏动画
+- (void)customHideAnimationOfShowShakeAnimation:(BOOL)flag
+{
+    [super customHideAnimationOfShowShakeAnimation:flag];
+}
+
 @end

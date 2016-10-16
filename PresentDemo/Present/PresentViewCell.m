@@ -84,7 +84,7 @@
 {
     [NSObject cancelPreviousPerformRequestsWithTarget:self];//取消上次的延时隐藏动画
     __weak typeof(self) ws = self;
-    [self performSelector:@selector(hiddenAnimation) withObject:nil afterDelay:3.0];
+    [self performSelector:@selector(hiddenAnimationOfShowShake:) withObject:@(YES) afterDelay:self.showTime];
     
     _state               = AnimationStateShaking;
     self.shakeLable.text = [NSString stringWithFormat:@"X%ld", ++self.number];
@@ -104,26 +104,27 @@
 
 #pragma mark - Public
 
-- (void)showAnimationWithSender:(NSString *)sender giftName:(NSString *)name prepare:(void (^)(void))prepare completion:(void (^)(BOOL))completion
+- (void)showAnimationWithModel:(id<PresentModelAble>)model showShakeAnimation:(BOOL)flag prepare:(void (^)(void))prepare completion:(void (^)(BOOL))completion
 {
-    _sender            = sender;
-    _giftName          = name;
+    _sender            = [model sender];
+    _giftName          = [model giftName];
     _state             = AnimationStateShowing;
     self.originalFrame = self.frame;
+    self.number        = 0;
     if (prepare) {
         prepare();
     }
     [UIView animateWithDuration:Duration delay:0 usingSpringWithDamping:1.0 initialSpringVelocity:0.0 options:UIViewAnimationOptionCurveEaseIn animations:^{
-        [self customDisplayAnimation];
+        [self customDisplayAnimationOfShowShakeAnimation:flag];
     } completion:^(BOOL finished) {
-        
-        if (!self.shakeLable) {
-            [self addShakeLable];
+        if (flag) {
+            if (!self.shakeLable) {
+                [self addShakeLable];
+            }
+            self.shakeLable.alpha = 1.0;
         }
-        self.shakeLable.alpha = 1.0;
-        self.number           = 0;
         if (completion) {
-            completion(finished);
+            completion(flag);
         }
     }];
 }
@@ -142,21 +143,22 @@
     }
 }
 
-- (void)hiddenAnimation
+- (void)hiddenAnimationOfShowShake:(BOOL)flag
 {
     _state = AnimationStateHiding;
     [UIView animateWithDuration:Duration delay:0 usingSpringWithDamping:1.0 initialSpringVelocity:0.0 options:UIViewAnimationOptionCurveEaseIn animations:^{
-        [self customHideAnimation];
+        [self customHideAnimationOfShowShakeAnimation:flag];
     } completion:^(BOOL finished) {
         //恢复cell的初始状态
-        self.frame = self.originalFrame;
-        _state     = AnimationStateNone;
-        _sender    = nil;
-        _giftName  = nil;
+        self.shakeLable.alpha = 0.0;
+        self.frame            = self.originalFrame;
+        _state                = AnimationStateNone;
+        _sender               = nil;
+        _giftName             = nil;
         
         //通知代理
-        if ([self.delegate respondsToSelector:@selector(presentViewCell:operationQueueCompletionOfNumber:)]) {
-            [self.delegate presentViewCell:self operationQueueCompletionOfNumber:self.number];
+        if ([self.delegate respondsToSelector:@selector(presentViewCell:showShakeAnimation:shakeNumber:)]) {
+            [self.delegate presentViewCell:self showShakeAnimation:flag shakeNumber:self.number];
         }
     }];
 }
@@ -171,7 +173,7 @@
 
 @implementation PresentViewCell (OverWrite)
 
-- (void)customDisplayAnimation
+- (void)customDisplayAnimationOfShowShakeAnimation:(BOOL)flag
 {
     self.alpha     = 1.0;
     CGRect selfF   = self.frame;
@@ -179,7 +181,7 @@
     self.frame     = selfF;
 }
 
-- (void)customHideAnimation
+- (void)customHideAnimationOfShowShakeAnimation:(BOOL)flag
 {
     self.alpha     = 0.0;
     CGRect selfF   = self.frame;

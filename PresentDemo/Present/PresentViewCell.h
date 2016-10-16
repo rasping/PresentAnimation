@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "PresentModelAble.h"
 
 //动画状态
 typedef NS_ENUM(NSUInteger, AnimationState) {
@@ -22,6 +23,10 @@ typedef NS_ENUM(NSUInteger, AnimationState) {
 @interface PresentViewCell : UIView
 
 @property (weak, nonatomic) id<PresentViewCellDelegate> delegate;
+/**
+ *  cell展示时间
+ */
+@property (assign, nonatomic)NSTimeInterval showTime;
 /**
  *  轨道编号
  */
@@ -43,21 +48,27 @@ typedef NS_ENUM(NSUInteger, AnimationState) {
 /**
  *  显示cell动画
  *
- *  @param sender     发送者
- *  @param name       礼物名
+ *  @param model      礼物模型
+ *  @param flag       是否带连乘动画
  *  @param prepare    准备动画回调
  *  @param completion 动画完成回调
  */
-- (void)showAnimationWithSender:(NSString *)sender
-                       giftName:(NSString *)name
-                        prepare:(void (^)(void))prepare
-                     completion:(void (^)(BOOL finished))completion;
+- (void)showAnimationWithModel:(id<PresentModelAble> )model
+            showShakeAnimation:(BOOL)flag
+                       prepare:(void (^)(void))prepare
+                    completion:(void (^)(BOOL flag))completion;
 /**
  *  连乘动画
  *
  *  @param number 连乘次数
  */
 - (void)shakeAnimationWithNumber:(NSInteger)number;
+/**
+ *  隐藏cell动画
+ *
+ *  @param flag 是否带有连城动画
+ */
+- (void)hiddenAnimationOfShowShake:(BOOL)flag;
 /**
  *  释放引用变量
  */
@@ -70,12 +81,16 @@ typedef NS_ENUM(NSUInteger, AnimationState) {
 
 /**
  *  自定义展示动画
+ *
+ *  @param flag 是否带有连乘动画
  */
-- (void)customDisplayAnimation;
+- (void)customDisplayAnimationOfShowShakeAnimation:(BOOL)flag;
 /**
  *  自定义隐藏动画
+ *
+ *  @param flag 是否带有连乘动画
  */
-- (void)customHideAnimation;
+- (void)customHideAnimationOfShowShakeAnimation:(BOOL)flag;
 
 @end
 
@@ -102,8 +117,11 @@ typedef NS_ENUM(NSUInteger, AnimationState) {
 /**
  *  一组动画组完成回调
  *
- *  @param number 最终连乘数
+ *  @param flag   是否带连乘动画
+ *  @param number 最终连乘数，如果flag为NO number就为0
  */
-- (void)presentViewCell:(PresentViewCell *)cell operationQueueCompletionOfNumber:(NSInteger)number;
+- (void)presentViewCell:(PresentViewCell *)cell
+     showShakeAnimation:(BOOL)flag
+            shakeNumber:(NSInteger)number;
 
 @end

@@ -129,7 +129,7 @@
     self.serialBtnOne.hidden = NO;
     [self.serialBtnOne setTitle:@"30" forState:UIControlStateNormal];
     [self timer];
-    [self.presentView insertPresentMessages:@[self.dataArray[0]]];
+    [self.presentView insertPresentMessages:@[self.dataArray[0]] showShakeAnimation:YES];
 }
 
 - (IBAction)sendTwo:(UIButton *)sender
@@ -137,7 +137,7 @@
     self.serialBtnTwo.hidden = NO;
     [self.serialBtnTwo setTitle:@"30" forState:UIControlStateNormal];
     [self timer];
-    [self.presentView insertPresentMessages:@[self.dataArray[1]]];
+    [self.presentView insertPresentMessages:@[self.dataArray[1]] showShakeAnimation:YES];
 }
 
 - (IBAction)sendThree:(UIButton *)sender
@@ -145,22 +145,22 @@
     self.serialBtnThree.hidden = NO;
     [self.serialBtnThree setTitle:@"30" forState:UIControlStateNormal];
     [self timer];
-    [self.presentView insertPresentMessages:@[self.dataArray[2]]];
+    [self.presentView insertPresentMessages:@[self.dataArray[2]] showShakeAnimation:YES];
 }
 
 - (IBAction)sendFour:(UIButton *)sender
 {
-    self.serialBtnFour.hidden = NO;
-    [self.serialBtnFour setTitle:@"30" forState:UIControlStateNormal];
-    [self timer];
-    [self.presentView insertPresentMessages:@[self.dataArray[3]]];
+//    self.serialBtnFour.hidden = NO;
+//    [self.serialBtnFour setTitle:@"30" forState:UIControlStateNormal];
+//    [self timer];
+    [self.presentView insertPresentMessages:@[self.dataArray[3]] showShakeAnimation:NO];
 }
 
 - (IBAction)serialBtnClicked:(UIButton *)btn
 {
     [btn setTitle:@"30" forState:UIControlStateNormal];
     [btn.titleLabel setText:@"30"];
-    [self.presentView insertPresentMessages:@[self.dataArray[btn.tag]]];
+    [self.presentView insertPresentMessages:@[self.dataArray[btn.tag]] showShakeAnimation:YES];
 }
 
 @end

@@ -8,7 +8,6 @@
 
 #import <UIKit/UIKit.h>
 #import "PresentViewCell.h"
-#import "PresentModelAble.h"
 
 @protocol PresentViewDelegate;
 
@@ -18,6 +17,10 @@
  *  cell高度(默认40)
  */
 @property (assign, nonatomic) CGFloat cellHeight;
+/**
+ *  礼物动画展示时间(默认3秒)
+ */
+@property (assign, nonatomic)NSTimeInterval showTime;
 /**
  *  轨道总数
  */
@@ -31,8 +34,9 @@
  *  插入送礼消息
  *
  *  @param models 礼物模型数组中的模型必须遵守PresentModelAble协议
+ *  @param flag   是否需要连乘动画
  */
-- (void)insertPresentMessages:(NSArray<id <PresentModelAble>> *)models;
+- (void)insertPresentMessages:(NSArray<id <PresentModelAble>> *)models showShakeAnimation:(BOOL)flag;
 
 @end
 
