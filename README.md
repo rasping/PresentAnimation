@@ -2,7 +2,7 @@
 ***
 ## 仿映客刷礼物效果
 
-#### 1. 创建PresentView对象
+#### 1. 创建PresentView
 
 ```
 PresentView *presentView = [[PresentView alloc] init];
