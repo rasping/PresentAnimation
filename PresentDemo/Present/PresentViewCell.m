@@ -133,11 +133,11 @@
 {
     //因为动画实在子线程中完成，所以线程是无法解决的
     if (number > 0) [self.caches addObject:@(number)];
-    if (self.caches.count && _state != AnimationStateShaking) {
+    if (self.caches.count > 0 && _state != AnimationStateShaking) {
         NSInteger cache        = [self.caches.firstObject integerValue];
+        [self.caches removeObjectAtIndex:0];//不能删除对象，因为可能有相同的对象
         __weak typeof(self) ws = self;
         [self startShakeAnimationWithNumber:cache completion:^(BOOL finished) {
-            [ws.caches removeObjectAtIndex:0];//不能删除对象，因为可能有相同的对象
             [ws shakeAnimationWithNumber:-1];//传-1是为了缓存不被重复添加
         }];
     }
@@ -150,11 +150,11 @@
         [self customHideAnimationOfShowShakeAnimation:flag];
     } completion:^(BOOL finished) {
         //恢复cell的初始状态
-        self.shakeLable.alpha = 0.0;
         self.frame            = self.originalFrame;
         _state                = AnimationStateNone;
         _sender               = nil;
         _giftName             = nil;
+        self.shakeLable.alpha = 0.0;
         
         //通知代理
         if ([self.delegate respondsToSelector:@selector(presentViewCell:showShakeAnimation:shakeNumber:)]) {

@@ -168,8 +168,9 @@
         [self.nonshakeDataCaches addObjectsFromArray:models];
     }
     NSArray *freeCells = [self examinePresentViewCells];
-    if (self.nonshakeDataCaches.count && freeCells.count) {
+    if (self.nonshakeDataCaches.count > 0 && freeCells.count > 0) {
         id<PresentModelAble> obj = self.nonshakeDataCaches.firstObject;
+        [self.nonshakeDataCaches removeObjectAtIndex:0];
         PresentViewCell *cell    = freeCells.firstObject;
         cell.showTime            = self.showTime;
         __weak typeof(self) ws   = self;
@@ -179,8 +180,7 @@
             }
         } completion:^(BOOL flag) {
             if (!flag) {
-                [ws.nonshakeDataCaches removeObjectAtIndex:0];
-                [cell performSelector:@selector(hiddenAnimationOfShowShake:) withObject:@(YES) afterDelay:self.showTime];
+                [cell performSelector:@selector(hiddenAnimationOfShowShake:) withObject:@(NO) afterDelay:self.showTime];
             }
         }];
     }
