@@ -131,12 +131,11 @@
 
 - (void)shakeAnimationWithNumber:(NSInteger)number
 {
-    //因为动画实在子线程中完成，所以线程是无法解决的
     if (number > 0) [self.caches addObject:@(number)];
     if (self.caches.count > 0 && _state != AnimationStateShaking) {
         NSInteger cache        = [self.caches.firstObject integerValue];
         [self.caches removeObjectAtIndex:0];//不能删除对象，因为可能有相同的对象
-        __weak typeof(self) ws = self;
+        __weak typeof(self) ws = self;//
         [self startShakeAnimationWithNumber:cache completion:^(BOOL finished) {
             [ws shakeAnimationWithNumber:-1];//传-1是为了缓存不被重复添加
         }];

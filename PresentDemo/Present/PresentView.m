@@ -110,22 +110,6 @@
  */
 - (void)insertShowShakeAnimationMessages:(NSArray<id<PresentModelAble>> *)models
 {
-    //收到一条消息，检测当前当前是否有相同类型的消息正在执行动画
-    //3有，将该消息加入到当前队列中
-    //4没有，检测当前是否有空闲轨道，用于展示动画
-    //5有，将缓存中该类型的消息全部取出，开始执行动画
-    //6没有，将消息加入到缓存中
-    //7等待一个类型动画执行完成，并三秒内没有收到新的同类消息，就执行隐藏动画
-    //8等待隐藏动画执行完成，就应该执行缓存中下一个类型的动画，只到无缓存为止
-    
-    //消息类型：如果发送者和礼物名都一样，就为同类型
-    //逻辑问题：在开始下一次动画取缓存时，如果刚好又接收到同类型消息，又会取缓存
-    //问题1：正在执行隐藏动画时有相同类型的消息插入，这时应该算一个新的消息
-    //解决办法：cell正在执行隐藏动画时不算是正在动画
-    //测试办法：延长隐藏动画时间，删除动画检测方法中AnimationStateHiding状态的判断
-    //问题2：在短时间内收到多个相同类型的消息时，会导致上一个shake动画还没执行完，就开始执行下一个shake动画
-    //解决办法：缓存--等待上一次添加的shake动画全部执行完成，再去执行下面添加的
-    //测试方法：移除缓存逻辑处理
     for (int index = 0; index < models.count; index++) {
         id<PresentModelAble> obj = models[index];
         PresentViewCell *cell = [self examinePresentingCell:obj];
@@ -159,11 +143,6 @@
  */
 - (void)insertNonshakeAnimationMessages:(NSArray<id<PresentModelAble>> *)models
 {
-    //创建一个不带连城动画的缓存数组
-    //收到消息就直接缓存
-    //如果有缓存，并且当前有空闲的cell
-    //开始cell的动画
-    //动画结束，继续取缓存，只到取完为止
     if (models) {
         [self.nonshakeDataCaches addObjectsFromArray:models];
     }
