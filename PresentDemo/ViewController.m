@@ -129,7 +129,9 @@
     self.serialBtnOne.hidden = NO;
     [self.serialBtnOne setTitle:@"30" forState:UIControlStateNormal];
     [self timer];
-    [self.presentView insertPresentMessages:@[self.dataArray[0]] showShakeAnimation:YES];
+    for (int index = 0; index < 100; index++) {
+        [self.presentView insertPresentMessages:@[self.dataArray[0]] showShakeAnimation:YES];
+    }
 }
 
 - (IBAction)sendTwo:(UIButton *)sender
@@ -137,7 +139,11 @@
     self.serialBtnTwo.hidden = NO;
     [self.serialBtnTwo setTitle:@"30" forState:UIControlStateNormal];
     [self timer];
-    [self.presentView insertPresentMessages:@[self.dataArray[1]] showShakeAnimation:YES];
+    NSMutableArray *array = [NSMutableArray array];
+    for (int index = 0; index < 10; index++) {
+        [array addObject:self.dataArray[1]];
+    }
+    [self.presentView insertPresentMessages:array showShakeAnimation:YES];
 }
 
 - (IBAction)sendThree:(UIButton *)sender
