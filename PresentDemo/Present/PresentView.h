@@ -37,6 +37,10 @@
  *  @param flag   是否需要连乘动画
  */
 - (void)insertPresentMessages:(NSArray<id <PresentModelAble>> *)models showShakeAnimation:(BOOL)flag;
+/**
+ 释放相关引用变量
+ */
+- (void)releaseVariable;
 
 @end
 

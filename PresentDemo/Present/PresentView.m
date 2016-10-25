@@ -253,6 +253,14 @@
     return nil;
 }
 
+- (void)releaseVariable
+{
+    [self.dataCaches removeAllObjects];
+    [self.nonshakeDataCaches removeAllObjects];
+    [self.showCells makeObjectsPerformSelector:@selector(removeFromSuperview)];
+    [self.showCells removeAllObjects];
+}
+
 #pragma mark - PresentViewCellDelegate
 
 - (void)presentViewCell:(PresentViewCell *)cell showShakeAnimation:(BOOL)flag shakeNumber:(NSInteger)number
