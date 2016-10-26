@@ -89,12 +89,12 @@
     self.shakeLable.text   = [NSString stringWithFormat:@"X%ld", ++self.number];
     __weak typeof(self) ws = self;
     [self.shakeLable startAnimationDuration:Duration completion:^(BOOL finish) {
-        _state = AnimationStateShaked;
         if (number > 1) {
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                 [ws startShakeAnimationWithNumber:(number - 1) completion:block];
             });
         }else {
+            _state = AnimationStateShaked;
             if (block) {
                 block(YES);
             }
