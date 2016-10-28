@@ -105,14 +105,14 @@
 
 #pragma mark - Private
 
+//问题一：如果展示动画还在执行，就收到了新的连乘动画消息，这时会判定为去执行连乘动画，因为展示动画还没有执行完成，所以连乘lable还没有被创建，所以会导致连乘动画会消失
+//解决办法：等连展示动画执行完成了，才能开始连乘动画，否则连乘动画消息就被缓存
+
 /**
  *  插入带连乘动画的消息
  */
 - (void)insertShowShakeAnimationMessages:(NSArray<id<PresentModelAble>> *)models
 {
-    //问题一：如果展示动画还在执行，就收到了新的连乘动画消息，这时会判定为去执行连乘动画，因为展示动画还没有执行完成，所以连乘lable还没有被创建，所以会导致连乘动画会消失
-    //解决办法：等连展示动画执行完成了，才能开始连乘动画，否则连乘动画消息就被缓存
-    
     for (int index = 0; index < models.count; index++) {
         id<PresentModelAble> obj = models[index];
         PresentViewCell *cell = [self examinePresentingCell:obj];
@@ -130,6 +130,7 @@
                 cell                   = cells.firstObject;
                 //设置后，再次展示的动画才会生效
                 cell.showTime          = self.showTime;
+                NSArray *objs          = [self subarrayWithObj:obj];
                 __weak typeof(self) ws = self;
                 [cell showAnimationWithModel:obj showShakeAnimation:YES prepare:^{
                     if ([ws.delegate respondsToSelector:@selector(presentView:configCell:sender:giftName:)]) {
@@ -137,7 +138,7 @@
                     }
                 } completion:^(BOOL flag) {
                     if (flag) {
-                        [cell shakeAnimationWithNumber:[self subarrayWithObj:obj].count];
+                        [cell shakeAnimationWithNumber:objs.count];
                     }
                 }];
             }
@@ -196,7 +197,7 @@
     for (PresentViewCell *cell in self.showCells) {
         if ([cell.sender isEqualToString:[obj sender]] && [cell.giftName isEqualToString:[obj giftName]]) {
             //当前正在展示动画并且不是隐藏动画
-            if (cell.state != AnimationStateNone && cell.state != AnimationStateHiding) return cell;
+            if (cell.state != AnimationStateNone && cell.state != AnimationStateHiding ) return cell;
         }
     }
     return nil;

@@ -129,9 +129,7 @@
     self.serialBtnOne.hidden = NO;
     [self.serialBtnOne setTitle:@"30" forState:UIControlStateNormal];
     [self timer];
-    for (int index = 0; index < 100; index++) {
-        [self.presentView insertPresentMessages:@[self.dataArray[0]] showShakeAnimation:YES];
-    }
+    [self.presentView insertPresentMessages:@[self.dataArray[0]] showShakeAnimation:YES];
 }
 
 - (IBAction)sendTwo:(UIButton *)sender
