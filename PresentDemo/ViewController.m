@@ -138,7 +138,7 @@
     [self.serialBtnTwo setTitle:@"30" forState:UIControlStateNormal];
     [self timer];
     NSMutableArray *array = [NSMutableArray array];
-    for (int index = 0; index < 10; index++) {
+    for (int index = 0; index < 3; index++) {
         [array addObject:self.dataArray[1]];
     }
     [self.presentView insertPresentMessages:array showShakeAnimation:YES];
