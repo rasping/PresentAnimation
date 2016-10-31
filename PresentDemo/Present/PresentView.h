@@ -55,13 +55,11 @@
  *  礼物动画即将展示的时调用，根据礼物消息类型为自定义的cell设置对应的模型数据用于展示
  *
  *  @param cell        用来展示动画的cell
- *  @param sender      礼物发送者
- *  @param name        礼物名
+ *  @param model       礼物模型
  */
 - (void)presentView:(PresentView *)presentView
-               configCell:(PresentViewCell *)cell
-             sender:(NSString *)sender
-           giftName:(NSString *)name;
+         configCell:(PresentViewCell *)cell
+              model:(id<PresentModelAble>)model;
 
 @optional
 

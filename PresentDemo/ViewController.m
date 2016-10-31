@@ -106,14 +106,10 @@
     return [[CustonCell alloc] initWithRow:row];
 }
 
-- (void)presentView:(PresentView *)presentView configCell:(PresentViewCell *)cell sender:(NSString *)sender giftName:(NSString *)name
+- (void)presentView:(PresentView *)presentView configCell:(PresentViewCell *)cell model:(id<PresentModelAble>)model
 {
-    for (PresentModel *model in self.dataArray) {
-        if ([model.sender isEqualToString:sender] && [model.giftName isEqualToString:name]) {
-            CustonCell *customCell = (CustonCell *)cell;
-            customCell.model = model;
-        }
-    }
+    CustonCell *customCell = (CustonCell *)cell;
+    customCell.model = model;
 }
 
 - (void)presentView:(PresentView *)presentView didSelectedCellOfRowAtIndex:(NSUInteger)index

@@ -134,8 +134,8 @@
 //                NSArray *objs          = [self subarrayWithObj:obj];
                 __weak typeof(self) ws = self;
                 [cell showAnimationWithModel:obj showShakeAnimation:YES prepare:^{
-                    if ([ws.delegate respondsToSelector:@selector(presentView:configCell:sender:giftName:)]) {
-                        [ws.delegate presentView:ws configCell:cell sender:[obj sender] giftName:[obj giftName]];
+                    if ([ws.delegate respondsToSelector:@selector(presentView:configCell:model:)]) {
+                        [ws.delegate presentView:ws configCell:cell model:obj];
                     }
                 } completion:^(BOOL flag) {
                     if (flag) {
@@ -163,8 +163,8 @@
         cell.showTime            = self.showTime;
         __weak typeof(self) ws   = self;
         [cell showAnimationWithModel:obj showShakeAnimation:NO prepare:^{
-            if ([ws.delegate respondsToSelector:@selector(presentView:configCell:sender:giftName:)]) {
-                [ws.delegate presentView:ws configCell:cell sender:[obj sender] giftName:[obj giftName]];
+            if ([ws.delegate respondsToSelector:@selector(presentView:configCell:model:)]) {
+                [ws.delegate presentView:ws configCell:cell model:obj];
             }
         } completion:^(BOOL flag) {
             if (!flag) {
@@ -272,8 +272,8 @@
         [self.dataCaches removeObject:obj];
         __weak typeof(self) ws = self;
         [cell showAnimationWithModel:obj showShakeAnimation:YES prepare:^{
-            if ([ws.delegate respondsToSelector:@selector(presentView:configCell:sender:giftName:)]) {
-                [ws.delegate presentView:ws configCell:cell sender:[obj sender] giftName:[obj giftName]];
+            if ([ws.delegate respondsToSelector:@selector(presentView:configCell:model:)]) {
+                [ws.delegate presentView:ws configCell:cell model:obj];
             }
         } completion:^(BOOL flag) {
             if (flag) {
