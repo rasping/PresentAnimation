@@ -150,7 +150,7 @@
 
 - (IBAction)sendFour:(UIButton *)sender
 {
-//    self.serialBtnFour.hidden = NO;
+//    self.serialBtnFour.hidden = NO; 
 //    [self.serialBtnFour setTitle:@"30" forState:UIControlStateNormal];
 //    [self timer];
     [self.presentView insertPresentMessages:@[self.dataArray[3]] showShakeAnimation:NO];
