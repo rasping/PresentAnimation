@@ -130,7 +130,7 @@
                 cell                   = cells.firstObject;
                 //设置后，再次展示的动画才会生效
                 cell.showTime          = self.showTime;
-                [self.dataCaches removeObject:obj];
+//                [self.dataCaches removeObject:obj];
 //                NSArray *objs          = [self subarrayWithObj:obj];
                 __weak typeof(self) ws = self;
                 [cell showAnimationWithModel:obj showShakeAnimation:YES prepare:^{
@@ -139,7 +139,7 @@
                     }
                 } completion:^(BOOL flag) {
                     if (flag) {
-                        [cell shakeAnimationWithNumber:[self subarrayWithObj:obj].count + 1];
+                        [cell shakeAnimationWithNumber:[self subarrayWithObj:obj].count];
                     }
                 }];
             }
@@ -269,7 +269,7 @@
 {
     if (self.dataCaches.count) {
         id<PresentModelAble> obj = self.dataCaches.firstObject;
-        [self.dataCaches removeObject:obj];
+//        [self.dataCaches removeObject:obj];
         __weak typeof(self) ws = self;
         [cell showAnimationWithModel:obj showShakeAnimation:YES prepare:^{
             if ([ws.delegate respondsToSelector:@selector(presentView:configCell:model:)]) {
@@ -277,7 +277,7 @@
             }
         } completion:^(BOOL flag) {
             if (flag) {
-                [cell shakeAnimationWithNumber:[self subarrayWithObj:obj].count + 1];
+                [cell shakeAnimationWithNumber:[self subarrayWithObj:obj].count];
             }
         }];
     }else if (self.nonshakeDataCaches.count) {
