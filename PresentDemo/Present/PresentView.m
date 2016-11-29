@@ -286,6 +286,9 @@
     }else {
         [cell releaseVariable];
     }
+    if ([self.delegate respondsToSelector:@selector(presentView:animationCompleted:model:)]) {
+        [self.delegate presentView:self animationCompleted:number model:cell.gitfModel];
+    }
 }
 
 @end

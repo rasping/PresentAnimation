@@ -118,6 +118,12 @@
     NSLog(@"你点击了：%@", cell.model.giftName);
 }
 
+- (void)presentView:(PresentView *)presentView animationCompleted:(NSInteger)shakeNumber model:(id<PresentModelAble>)model
+{
+    NSLog(@"%@礼物的连送动画执行完成", model.giftName);
+    number = 5;
+}
+
 #pragma mark - Action
 
 - (IBAction)sendOne:(UIButton *)sender
@@ -128,14 +134,16 @@
     [self.presentView insertPresentMessages:@[self.dataArray[0]] showShakeAnimation:YES];
 }
 
+static NSInteger number = 5;
+
 - (IBAction)sendTwo:(UIButton *)sender
 {
     //模拟当前连乘动画展示到5的时候才加入聊天室(连乘动画从5开始)
-    self.serialBtnTwo.hidden = NO;
-    [self.serialBtnTwo setTitle:@"30" forState:UIControlStateNormal];
-    [self timer];
+//    self.serialBtnTwo.hidden = NO;
+//    [self.serialBtnTwo setTitle:@"30" forState:UIControlStateNormal];
+//    [self timer];
     PresentModel *model = self.dataArray[1];
-    model.giftNumber = 5;
+    model.giftNumber = ++number;
     [self.presentView insertPresentMessages:@[model] showShakeAnimation:YES];
 }
 

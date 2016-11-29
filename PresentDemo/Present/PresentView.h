@@ -68,4 +68,9 @@
  */
 - (void)presentView:(PresentView *)presentView didSelectedCellOfRowAtIndex:(NSUInteger)index;
 
+/**
+ 一组连乘动画执行完成回调
+ */
+- (void)presentView:(PresentView *)presentView animationCompleted:(NSInteger)shakeNumber model:(id<PresentModelAble>)model;
+
 @end
