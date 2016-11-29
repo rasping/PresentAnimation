@@ -84,9 +84,11 @@
 {
     [NSObject cancelPreviousPerformRequestsWithTarget:self];//取消上次的延时隐藏动画
     [self performSelector:@selector(hiddenAnimationOfShowShake:) withObject:@(YES) afterDelay:self.showTime];
-    
+    NSInteger startNumber  = 0;
+    if ([self.gitfModel giftNumber] > 0)
+        startNumber        = [self.gitfModel giftNumber] - 1;
     _state                 = AnimationStateShaking;
-    self.shakeLable.text   = [NSString stringWithFormat:@"X%ld", ++self.number];
+    self.shakeLable.text   = [NSString stringWithFormat:@"X%ld", ++self.number + startNumber];
     __weak typeof(self) ws = self;
     [self.shakeLable startAnimationDuration:Duration completion:^(BOOL finish) {
         if (number > 1) {
@@ -108,6 +110,7 @@
 {
     _sender            = [model sender];
     _giftName          = [model giftName];
+    _gitfModel         = model;
     _state             = AnimationStateShowing;
     self.originalFrame = self.frame;
     self.number        = 0;

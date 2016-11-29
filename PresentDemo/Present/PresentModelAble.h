@@ -42,4 +42,13 @@
  */
 @property (copy, nonatomic) NSString *giftName;
 
+@optional
+
+/**
+ 需要展示的礼物连乘数 默认为0
+ 
+ @discussion 用于解决当前礼物消息消息正在展示时，新加入到聊天室的人看到的礼物消息不是重1开始，如果要使用消息体中必须包含当前礼物个数
+ */
+@property (assign, nonatomic) NSInteger giftNumber;
+
 @end

@@ -130,14 +130,13 @@
 
 - (IBAction)sendTwo:(UIButton *)sender
 {
+    //模拟当前连乘动画展示到5的时候才加入聊天室(连乘动画从5开始)
     self.serialBtnTwo.hidden = NO;
     [self.serialBtnTwo setTitle:@"30" forState:UIControlStateNormal];
     [self timer];
-    NSMutableArray *array = [NSMutableArray array];
-    for (int index = 0; index < 1; index++) {
-        [array addObject:self.dataArray[1]];
-    }
-    [self.presentView insertPresentMessages:array showShakeAnimation:YES];
+    PresentModel *model = self.dataArray[1];
+    model.giftNumber = 5;
+    [self.presentView insertPresentMessages:@[model] showShakeAnimation:YES];
 }
 
 - (IBAction)sendThree:(UIButton *)sender

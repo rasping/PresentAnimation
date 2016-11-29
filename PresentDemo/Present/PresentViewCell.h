@@ -43,6 +43,10 @@ typedef NS_ENUM(NSUInteger, AnimationState) {
  *  礼物名
  */
 @property (copy, nonatomic, readonly) NSString *giftName;
+/**
+ 当前礼物模型
+ */
+@property (strong, nonatomic, readonly) id<PresentModelAble> gitfModel;
 
 - (instancetype)initWithRow:(NSInteger)row;
 /**
