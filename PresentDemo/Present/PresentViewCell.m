@@ -82,14 +82,17 @@
  */
 - (void)startShakeAnimationWithNumber:(NSInteger)number completion:(void (^)(BOOL finished))block
 {
+    self.superview.userInteractionEnabled = YES;
     [NSObject cancelPreviousPerformRequestsWithTarget:self];//取消上次的延时隐藏动画
     [self performSelector:@selector(hiddenAnimationOfShowShake:) withObject:@(YES) afterDelay:self.showTime];
-    self.number++;
-    if ([self.gitfModel giftNumber] > 0) {
-        self.number        = [self.gitfModel giftNumber];
+    _state               = AnimationStateShaking;
+    NSInteger giftNumber = [self.baseModel giftNumber];
+    if (giftNumber > 0) {
+        ;
+        self.shakeLable.text   = [NSString stringWithFormat:@"X%ld", ++self.number + giftNumber];
+    }else {
+        self.shakeLable.text   = [NSString stringWithFormat:@"X%ld", ++self.number];
     }
-    _state                 = AnimationStateShaking;
-    self.shakeLable.text   = [NSString stringWithFormat:@"X%ld", self.number];
     __weak typeof(self) ws = self;
     [self.shakeLable startAnimationDuration:Duration completion:^(BOOL finish) {
         if (number > 1) {
@@ -109,6 +112,7 @@
 
 - (void)showAnimationWithModel:(id<PresentModelAble>)model showShakeAnimation:(BOOL)flag prepare:(void (^)(void))prepare completion:(void (^)(BOOL))completion
 {
+    _baseModel         = model;
     _sender            = [model sender];
     _giftName          = [model giftName];
     _gitfModel         = model;
@@ -148,6 +152,7 @@
 
 - (void)hiddenAnimationOfShowShake:(BOOL)flag
 {
+    self.superview.userInteractionEnabled = NO;
     _state = AnimationStateHiding;
     [UIView animateWithDuration:Duration delay:0 usingSpringWithDamping:1.0 initialSpringVelocity:0.0 options:UIViewAnimationOptionCurveEaseIn animations:^{
         [self customHideAnimationOfShowShakeAnimation:flag];
@@ -157,6 +162,7 @@
         _state                = AnimationStateNone;
         _sender               = nil;
         _giftName             = nil;
+        _baseModel            = nil;
         self.shakeLable.alpha = 0.0;
         [self.caches removeAllObjects];
         

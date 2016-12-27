@@ -64,6 +64,14 @@
 
 #pragma mark - Initial
 
+- (instancetype)init
+{
+    if (self = [super init]) {
+        self.userInteractionEnabled = NO;
+    }
+    return self;
+}
+
 - (void)drawRect:(CGRect)rect
 {
     [super drawRect:rect];
@@ -269,15 +277,16 @@
 {
     if (self.dataCaches.count) {
         id<PresentModelAble> obj = self.dataCaches.firstObject;
-//        [self.dataCaches removeObject:obj];
         __weak typeof(self) ws = self;
         [cell showAnimationWithModel:obj showShakeAnimation:YES prepare:^{
             if ([ws.delegate respondsToSelector:@selector(presentView:configCell:model:)]) {
+                [ws.dataCaches removeObject:obj];
                 [ws.delegate presentView:ws configCell:cell model:obj];
             }
         } completion:^(BOOL flag) {
             if (flag) {
-                [cell shakeAnimationWithNumber:[self subarrayWithObj:obj].count];
+                NSInteger number = [self subarrayWithObj:obj].count + 1;
+                [cell shakeAnimationWithNumber:number];
             }
         }];
     }else if (self.nonshakeDataCaches.count) {

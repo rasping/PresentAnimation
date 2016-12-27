@@ -38,7 +38,7 @@
  */
 @property (copy, nonatomic) NSString *sender;
 /**
- *  礼物名
+ *  礼物名(或礼物编号)
  */
 @property (copy, nonatomic) NSString *giftName;
 

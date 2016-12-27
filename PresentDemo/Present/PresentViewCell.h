@@ -36,6 +36,10 @@ typedef NS_ENUM(NSUInteger, AnimationState) {
  */
 @property (assign, nonatomic, readonly) AnimationState state;
 /**
+ 礼物模型
+ */
+@property (strong, nonatomic, readonly)id<PresentModelAble> baseModel;
+/**
  *  礼物发送者
  */
 @property (copy, nonatomic, readonly) NSString *sender;

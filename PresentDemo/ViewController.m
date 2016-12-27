@@ -27,6 +27,8 @@
 @property (weak, nonatomic) UIButton *serialBtn;
 @property (strong, nonatomic)NSTimer *timer;
 
+@property (assign, nonatomic)NSInteger number;
+
 @end
 
 @implementation ViewController
@@ -68,6 +70,15 @@
     [self setupSerialBtn:self.serialBtnThree];
     [self setupSerialBtn:self.serialBtnFour];
     
+    self.number = 5;
+}
+
+- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
+{
+    //模拟当前连乘动画展示到5的时候才加入聊天室(连乘动画从5开始)
+    PresentModel *model = self.dataArray[0];
+    model.giftNumber = ++self.number;
+    [self.presentView insertPresentMessages:@[model] showShakeAnimation:YES];
 }
 
 #pragma mark - Private
@@ -120,8 +131,8 @@
 
 - (void)presentView:(PresentView *)presentView animationCompleted:(NSInteger)shakeNumber model:(id<PresentModelAble>)model
 {
+    self.number = 5;
     NSLog(@"%@礼物的连送动画执行完成", model.giftName);
-    number = 5;
 }
 
 #pragma mark - Action
@@ -134,17 +145,12 @@
     [self.presentView insertPresentMessages:@[self.dataArray[0]] showShakeAnimation:YES];
 }
 
-static NSInteger number = 5;
-
 - (IBAction)sendTwo:(UIButton *)sender
 {
-    //模拟当前连乘动画展示到5的时候才加入聊天室(连乘动画从5开始)
-//    self.serialBtnTwo.hidden = NO;
-//    [self.serialBtnTwo setTitle:@"30" forState:UIControlStateNormal];
-//    [self timer];
-    PresentModel *model = self.dataArray[1];
-    model.giftNumber = ++number;
-    [self.presentView insertPresentMessages:@[model] showShakeAnimation:YES];
+    self.serialBtnTwo.hidden = NO;
+    [self.serialBtnTwo setTitle:@"30" forState:UIControlStateNormal];
+    [self timer];
+    [self.presentView insertPresentMessages:@[self.dataArray[1]] showShakeAnimation:YES];
 }
 
 - (IBAction)sendThree:(UIButton *)sender
