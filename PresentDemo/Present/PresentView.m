@@ -278,6 +278,7 @@
     if (self.dataCaches.count) {
         id<PresentModelAble> obj = self.dataCaches.firstObject;
         __weak typeof(self) ws = self;
+        NSInteger number = [self subarrayWithObj:obj].count + 1;
         [cell showAnimationWithModel:obj showShakeAnimation:YES prepare:^{
             if ([ws.delegate respondsToSelector:@selector(presentView:configCell:model:)]) {
                 [ws.dataCaches removeObject:obj];
@@ -285,7 +286,6 @@
             }
         } completion:^(BOOL flag) {
             if (flag) {
-                NSInteger number = [self subarrayWithObj:obj].count + 1;
                 [cell shakeAnimationWithNumber:number];
             }
         }];
