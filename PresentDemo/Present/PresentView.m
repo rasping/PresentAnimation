@@ -72,6 +72,13 @@
     return self;
 }
 
+- (void)awakeFromNib
+{
+    [super awakeFromNib];
+    
+    self.userInteractionEnabled = NO;
+}
+
 - (void)drawRect:(CGRect)rect
 {
     [super drawRect:rect];
