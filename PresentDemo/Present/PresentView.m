@@ -123,6 +123,10 @@
 //问题一：如果展示动画还在执行，就收到了新的连乘动画消息，这时会判定为去执行连乘动画，因为展示动画还没有执行完成，所以连乘lable还没有被创建，所以会导致连乘动画会消失
 //解决办法：等连展示动画执行完成了，才能开始连乘动画，否则连乘动画消息就被缓存
 
+//问题二：点击礼物4，等礼物4快要消失的时候，点击礼物1。会出现两个礼物1，并且下面的cell不会消失，导致礼物1的消息都会被缓存起来
+//问题原因：当礼物4将要隐藏时，这时接收到礼物1的消息，就会利用空闲的cell来展示礼物1，但这是没有马上删除礼物1的缓存，而是等到礼物1展示完成才删除的，所以礼物4展示完成就会检测缓存，这是礼物1并没有被删除，所以这里又会展示礼物1，这就导致了礼物一被展示了两次
+//解决办法：礼物1展示了就立马删除
+
 /**
  *  插入带连乘动画的消息
  */
@@ -146,7 +150,7 @@
                 //设置后，再次展示的动画才会生效
                 cell.showTime          = self.showTime;
 //                [self.dataCaches removeObject:obj];
-//                NSArray *objs          = [self subarrayWithObj:obj];
+                NSInteger count        = [self subarrayWithObj:obj].count;
                 __weak typeof(self) ws = self;
                 [cell showAnimationWithModel:obj showShakeAnimation:YES prepare:^{
                     if ([ws.delegate respondsToSelector:@selector(presentView:configCell:model:)]) {
@@ -154,7 +158,7 @@
                     }
                 } completion:^(BOOL flag) {
                     if (flag) {
-                        [cell shakeAnimationWithNumber:[self subarrayWithObj:obj].count];
+                        [cell shakeAnimationWithNumber:count];
                     }
                 }];
             }
@@ -285,7 +289,7 @@
     if (self.dataCaches.count) {
         id<PresentModelAble> obj = self.dataCaches.firstObject;
         __weak typeof(self) ws = self;
-        NSInteger number = [self subarrayWithObj:obj].count + 1;
+        NSInteger number = [self subarrayWithObj:obj].count;
         [cell showAnimationWithModel:obj showShakeAnimation:YES prepare:^{
             if ([ws.delegate respondsToSelector:@selector(presentView:configCell:model:)]) {
                 [ws.dataCaches removeObject:obj];

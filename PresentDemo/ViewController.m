@@ -76,7 +76,7 @@
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
 {
     //模拟当前连乘动画展示到5的时候才加入聊天室(连乘动画从5开始)
-    PresentModel *model = self.dataArray[0];
+    PresentModel *model = [PresentModel modelWithSender:@"one" giftName:@"小车" icon:@"icon1" giftImageName:@"prop_b"];
     model.giftNumber = ++self.number;
     [self.presentView insertPresentMessages:@[model] showShakeAnimation:YES];
 }
