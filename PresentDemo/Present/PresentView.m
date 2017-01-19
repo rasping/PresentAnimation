@@ -124,8 +124,11 @@
 //解决办法：等连展示动画执行完成了，才能开始连乘动画，否则连乘动画消息就被缓存
 
 //问题二：点击礼物4，等礼物4快要消失的时候，点击礼物1。会出现两个礼物1，并且下面的cell不会消失，导致礼物1的消息都会被缓存起来
-//问题原因：当礼物4将要隐藏时，这时接收到礼物1的消息，就会利用空闲的cell来展示礼物1，但这是没有马上删除礼物1的缓存，而是等到礼物1展示完成才删除的，所以礼物4展示完成就会检测缓存，这是礼物1并没有被删除，所以这里又会展示礼物1，这就导致了礼物一被展示了两次
-//解决办法：礼物1展示了就立马删除
+//问题原因：当礼物4将要隐藏时，这时接收到礼物1的消息，就会利用空闲的cell来展示礼物1，但这是没有马上删除礼物1的缓存，而是等到礼物1展示完成才删除的，所以礼物4展示完成就会检测缓存，这时礼物1并没有被删除，所以这里又会展示礼物1，这就导致了礼物一被展示了两次
+//解决办法：当礼物4执行完成了，去取缓存的时候，如果取到了缓存，还需要判断这个缓存当前有没有在展示，如果在展示就不做处理，如果没有在展示就利用当前的cell去展示它
+
+//问题三：连续快速点击礼物1，会分两次动画展示
+//问题原因：因为两次送的礼物相同，如果快速点击，会发生用于展示第一个礼物的cell还处在AnimationStateShowing状态时，就收到第二个礼物，这个是时候的逻辑处理是将第二个消息缓存了起来(为了解决上述的问题一)
 
 /**
  *  插入带连乘动画的消息
@@ -149,8 +152,6 @@
                 cell                   = cells.firstObject;
                 //设置后，再次展示的动画才会生效
                 cell.showTime          = self.showTime;
-//                [self.dataCaches removeObject:obj];
-                NSInteger count        = [self subarrayWithObj:obj].count;
                 __weak typeof(self) ws = self;
                 [cell showAnimationWithModel:obj showShakeAnimation:YES prepare:^{
                     if ([ws.delegate respondsToSelector:@selector(presentView:configCell:model:)]) {
@@ -158,7 +159,8 @@
                     }
                 } completion:^(BOOL flag) {
                     if (flag) {
-                        [cell shakeAnimationWithNumber:count];
+                        //如果相同礼物类型的消息缓存在执行展示动画之前就删除了，这就会造成在cell执行展示动画期间收到的相同类型的消息会被缓存到下一个cell中展示
+                        [cell shakeAnimationWithNumber:[self subarrayWithObj:obj].count];
                     }
                 }];
             }
@@ -288,18 +290,20 @@
 {
     if (self.dataCaches.count) {
         id<PresentModelAble> obj = self.dataCaches.firstObject;
-        __weak typeof(self) ws = self;
-        NSInteger number = [self subarrayWithObj:obj].count;
-        [cell showAnimationWithModel:obj showShakeAnimation:YES prepare:^{
-            if ([ws.delegate respondsToSelector:@selector(presentView:configCell:model:)]) {
-                [ws.dataCaches removeObject:obj];
-                [ws.delegate presentView:ws configCell:cell model:obj];
-            }
-        } completion:^(BOOL flag) {
-            if (flag) {
-                [cell shakeAnimationWithNumber:number];
-            }
-        }];
+        if (![self examinePresentingCell:obj]) {
+            __weak typeof(self) ws = self;
+            [cell showAnimationWithModel:obj showShakeAnimation:YES prepare:^{
+                if ([ws.delegate respondsToSelector:@selector(presentView:configCell:model:)]) {
+                    [ws.delegate presentView:ws configCell:cell model:obj];
+                }
+            } completion:^(BOOL flag) {
+                if (flag) {
+                    [cell shakeAnimationWithNumber:[self subarrayWithObj:obj].count];
+                }
+            }];
+        }else {
+            NSLog(@"取到的缓存当前正在展示");
+        }
     }else if (self.nonshakeDataCaches.count) {
         //带连乘的缓存优先处理
         [self insertNonshakeAnimationMessages:nil];

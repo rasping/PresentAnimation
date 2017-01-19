@@ -112,11 +112,11 @@
 
 - (void)showAnimationWithModel:(id<PresentModelAble>)model showShakeAnimation:(BOOL)flag prepare:(void (^)(void))prepare completion:(void (^)(BOOL))completion
 {
+    _state             = AnimationStateShowing;
     _baseModel         = model;
     _sender            = [model sender];
     _giftName          = [model giftName];
     _gitfModel         = model;
-    _state             = AnimationStateShowing;
     self.originalFrame = self.frame;
     self.number        = 0;
     if (prepare) {
