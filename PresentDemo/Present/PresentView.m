@@ -296,6 +296,9 @@
 
 - (void)presentViewCell:(PresentViewCell *)cell showShakeAnimation:(BOOL)flag shakeNumber:(NSInteger)number
 {
+    if ([self.delegate respondsToSelector:@selector(presentView:animationCompleted:model:)]) {
+        [self.delegate presentView:self animationCompleted:number model:cell.baseModel];
+    }
     if (self.dataCaches.count) {
         id<PresentModelAble> obj = self.dataCaches.firstObject;
         if (![self examinePresentingCell:obj]) {
@@ -320,9 +323,6 @@
         [self insertNonshakeAnimationMessages:nil];
     }else {
         [cell releaseVariable];
-    }
-    if ([self.delegate respondsToSelector:@selector(presentView:animationCompleted:model:)]) {
-        [self.delegate presentView:self animationCompleted:number model:cell.baseModel];
     }
 }
 
