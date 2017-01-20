@@ -132,7 +132,7 @@
 - (void)presentView:(PresentView *)presentView animationCompleted:(NSInteger)shakeNumber model:(id<PresentModelAble>)model
 {
     self.number = 5;
-//    NSLog(@"%@礼物的连送动画执行完成", model.giftName);
+    NSLog(@"%@礼物的连送动画执行完成", model.giftName);
 }
 
 #pragma mark - Action

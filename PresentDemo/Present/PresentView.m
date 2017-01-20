@@ -143,7 +143,11 @@
                 //在执行展示动画期间如果收到了连乘动画礼物消息，就将消息缓存
                 [self.dataCaches addObject:obj];
             }else {
-                [cell shakeAnimationWithNumber:1];
+                if ([obj giftNumber] > 0) {
+                    [cell shakeAnimationWithModels:@[obj]];
+                } else {
+                    [cell shakeAnimationWithNumber:1];
+                }
             }
         }else {
             [self.dataCaches addObject:obj];//将当前消息加到缓存中
@@ -160,7 +164,11 @@
                 } completion:^(BOOL flag) {
                     if (flag) {
                         //如果相同礼物类型的消息缓存在执行展示动画之前就删除了，这就会造成在cell执行展示动画期间收到的相同类型的消息会被缓存到下一个cell中展示
-                        [cell shakeAnimationWithNumber:[self subarrayWithObj:obj].count];
+                        if ([obj giftNumber] > 0) {
+                            [cell shakeAnimationWithModels:[self subarrayWithObj:obj]];
+                        }else {
+                            [cell shakeAnimationWithNumber:[self subarrayWithObj:obj].count];
+                        }
                     }
                 }];
             }
@@ -291,6 +299,7 @@
     if (self.dataCaches.count) {
         id<PresentModelAble> obj = self.dataCaches.firstObject;
         if (![self examinePresentingCell:obj]) {
+            //取到的缓存当前没有在展示
             __weak typeof(self) ws = self;
             [cell showAnimationWithModel:obj showShakeAnimation:YES prepare:^{
                 if ([ws.delegate respondsToSelector:@selector(presentView:configCell:model:)]) {
@@ -298,11 +307,13 @@
                 }
             } completion:^(BOOL flag) {
                 if (flag) {
-                    [cell shakeAnimationWithNumber:[self subarrayWithObj:obj].count];
+                    if ([obj giftNumber] > 0) {
+                        [cell shakeAnimationWithModels:[self subarrayWithObj:obj]];
+                    }else {
+                        [cell shakeAnimationWithNumber:[self subarrayWithObj:obj].count];
+                    }
                 }
             }];
-        }else {
-            NSLog(@"取到的缓存当前正在展示");
         }
     }else if (self.nonshakeDataCaches.count) {
         //带连乘的缓存优先处理
@@ -311,7 +322,7 @@
         [cell releaseVariable];
     }
     if ([self.delegate respondsToSelector:@selector(presentView:animationCompleted:model:)]) {
-        [self.delegate presentView:self animationCompleted:number model:cell.gitfModel];
+        [self.delegate presentView:self animationCompleted:number model:cell.baseModel];
     }
 }
 
